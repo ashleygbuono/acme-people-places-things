@@ -1,4 +1,4 @@
-const { db, syncAndSeed } = require('./db');
+const { db, syncAndSeed, models: { Person, Place, Thing } } = require('./db');
 const chalk = require('chalk');
 
 
