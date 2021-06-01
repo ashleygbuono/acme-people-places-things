@@ -24,8 +24,27 @@ const Thing = db.define('thing', {
     }
 });
 
+const Souvenir = db.define('souvenir', {
+    name: {
+        type: STRING
+    }
+});
+
+Souvenir.belongsTo(Person);
+
+Souvenir.belongsTo(Place);
+
+Souvenir.belongsTo(Thing);
+
+
 const syncAndSeed = async() => {
     await db.sync({ force: true });
+    const [ moe, larry, lucy, ethel, paris, chicago, london, foo, bar, bazz, quq ] = await Promise.all([
+        Souvenir.create({ name: 'Ethel', name: 'Paris', name: 'bazz' }),
+        Souvenir.create({ name: 'Moe', name: 'Chicago', name: 'quq' }),
+        Souvenir.create({ name: 'Larry', name: 'London', name: 'foo' }),
+        Souvenir.create({ name: 'Lucy', name: 'New York', name: 'bar' })
+    ])
 };
 
 module.exports = {
